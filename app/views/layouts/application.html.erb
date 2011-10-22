@@ -8,20 +8,24 @@
 </head>
 <body>
 
-  <div id="header">
-    Header
-  </div>
-  <div id="menu">
+  <div id="header" align="center">
+    <%= link_to "Active todos", url_for(:controller => "todos", :action => "show") %>
+    | <%= link_to "Histrory", url_for(:controller => "todos", :action => "show") %>
     <% if logged_in? %>
-      <%= link_to "Profile", url_for(:controller => "users", :action => "edit") %><br />
-      <%= link_to "Logout", url_for(:controller => "sessions", :action => "destroy") %><br />
-      <%= link_to "Submit todo item", url_for(:controller => "todos", :action => "new") %><br />
-    <% else %>
-      <%= render 'layouts/loginform' %>
+      | <%= link_to "Submit todo item", url_for(:controller => "todos", :action => "new") %><br />
     <% end %>
   </div>
   <div id="main">
     <%= yield %>
+  </div>
+  <div id="menu">
+    <%= render 'layouts/searchbox' %>
+    <% if logged_in? %>
+      <%= link_to "Profile", url_for(:controller => "users", :action => "edit") %><br />
+      <%= link_to "Logout", url_for(:controller => "sessions", :action => "destroy") %><br />
+    <% else %>
+      <%= render 'layouts/loginform' %>
+    <% end %>
   </div>
   <div id="footer">
     Copyright &copy; 2011 Miklos Vajna

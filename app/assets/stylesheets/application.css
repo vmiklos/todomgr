@@ -18,13 +18,13 @@
   background-color: #A2D39C;
   height: 600px;
   width: 24%;
-  float: left;
+  float: right;
 }
 
 #main {
   height: 600px;
   width: 76%;
-  float: right;
+  float: left;
 }
 
 #footer {
