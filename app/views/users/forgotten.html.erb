@@ -1,2 +1,17 @@
-<h1>Users#forgotten</h1>
-<p>Find me in app/views/users/forgotten.html.erb</p>
+<h3>Forgotten password</h3>
+<%= flash[:notice] %>
+
+<div>
+  <fieldset>
+    <legend>Recover a forgotten password</legend>
+    Please, give your email address<br />
+    <%= form_for :user, :url => {:action => "send_forgotten"} do |form| %>
+      <div>
+        <%= form.label :email %><br />
+        <%= form.text_field :email %>
+      </div>
+      <%= submit_tag "Send" %>
+    <% end %>
+  </fieldset>
+</div>
+<%= link_to "Back", :back %>
