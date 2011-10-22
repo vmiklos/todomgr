@@ -13,8 +13,6 @@ Todomgr::Application.routes.draw do
 
   get "users/forgotten"
 
-  get "hellocontroller/hellomethod"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
