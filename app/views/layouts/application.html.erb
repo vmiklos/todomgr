@@ -8,7 +8,22 @@
 </head>
 <body>
 
-<%= yield %>
+  <div id="header">
+    Header
+  </div>
+  <div id="menu">
+    <% if logged_in? %>
+      Hello user
+    <% else %>
+      <%= render 'layouts/loginform' %>
+    <% end %>
+  </div>
+  <div id="main">
+    <%= yield %>
+  </div>
+  <div id="footer">
+    Copyright &copy; 2011 Miklos Vajna
+  </div>
 
 </body>
 </html>

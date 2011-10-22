@@ -5,3 +5,31 @@
  *= require_self
  *= require_tree . 
 */
+#page {
+  width: 800px;
+}
+
+#header {
+  background-color: #82CA9D;
+  height: 100px;
+}
+
+#menu {
+  background-color: #A2D39C;
+  height: 600px;
+  width: 24%;
+  float: left;
+}
+
+#main {
+  height: 600px;
+  width: 76%;
+  float: right;
+}
+
+#footer {
+  background-color: #C4DF9B;
+  height: 100px;
+  clear: both;
+  text-align: center;
+}
