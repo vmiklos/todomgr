@@ -1,2 +1,11 @@
-<h1>Todos#show</h1>
-<p>Find me in app/views/todos/show.html.erb</p>
+<div>
+  <h3>TODO list</h3>
+  <table class="listbox">
+    <% for t in @todos %>
+      <%= content_tag_for(:tr, t) do %>
+        <td><%= t.deadline %></td>
+        <td><%= t.todo %></td>
+      <% end %>
+    <% end %>
+  </table>
+</div>
