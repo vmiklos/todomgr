@@ -1,4 +1,10 @@
 Todomgr::Application.routes.draw do
+  get "todos/new"
+
+  get "todos/edit"
+
+  get "todos/show"
+
   get "users/new"
 
   get "users/show"

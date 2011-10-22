@@ -1,0 +1,24 @@
+<h3>New todo</h3>
+<%= flash[:notice] %>
+
+<div>
+  <fieldset>
+    <legend>Submit a new todo item</legend>
+    <%= form_for :todo, :url => {:action => "create"} do |form| %>
+      <div>
+        <%= form.label :deadline %><br />
+        <%= select_datetime(@todo.deadline, :prefix => "todo") %>
+      </div>
+      <div>
+        <%= form.label :todo %><br />
+        <%= form.text_area :todo %>
+      </div>
+      <div>
+        <%= form.label :public %><br />
+        <%= form.check_box :public %>
+      </div>
+      <%= form.submit "Create" %>
+    <% end %>
+  </fieldset>
+</div>
+<%= link_to "Back", :back %>
