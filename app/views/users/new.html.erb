@@ -1,0 +1,28 @@
+<h3>Registration</h3>
+<%= flash[:notice] %>
+
+<div>
+  <fieldset>
+    <legend>Register a new user</legend>
+    <%= form_for :user, :url => {:action => "create"} do |form| %>
+      <div>
+        <%= form.label :username %><br />
+        <%= form.text_field :username, :size => 20 %>
+      </div>
+      <div>
+        <%= form.label :email %><br />
+        <%= form.text_field :email %>
+      </div>
+      <div>
+        <%= form.label :password %><br />
+        <%= form.text_field :password, :size => 20 %>
+      </div>
+      <div>
+        <%= form.label :password_confirmation %><br />
+        <%= form.text_field :password_confirmation, :size => 20 %>
+      </div>
+      <%= submit_tag "Register" %>
+    <% end %>
+  </fieldset>
+</div>
+<%= link_to "Back", :back %>
