@@ -13,4 +13,13 @@ class User < ActiveRecord::Base
     end
     self.encrypted_password = User.encrypt(password, salt)
   end
+
+  def self.authenticate(username, password)
+    user = find_by_username username
+    user && user.authenticated?(password) ? user : nil
+  end
+
+  def authenticated?(pass)
+    encrypted_password == User.encrypt(pass, salt)
+  end
 end
