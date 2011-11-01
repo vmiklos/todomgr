@@ -22,7 +22,7 @@
     <%= render 'layouts/searchbox' %>
     <% if logged_in? %>
       <%= link_to "Profile", url_for(:controller => "users", :action => "edit") %><br />
-      <%= link_to "Logout", url_for(:controller => "sessions", :action => "destroy") %><br />
+      <%= link_to "Logout", url_for(:controller => "session", :action => "destroy") %><br />
     <% else %>
       <%= render 'layouts/loginform' %>
     <% end %>
