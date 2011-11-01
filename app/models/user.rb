@@ -1,6 +1,12 @@
 class User < ActiveRecord::Base
   attr_accessor :password
+
   before_save :encrypt_password
+
+  validates_presence_of :username
+  validates_uniqueness_of :username
+  validates_length_of :username, :within => 4..20
+  validates_confirmation_of :password, :if => :password_required?
 
   def self.encrypt(pass, salt)
     Digest::SHA2.hexdigest(salt+pass)
@@ -21,5 +27,9 @@ class User < ActiveRecord::Base
 
   def authenticated?(pass)
     encrypted_password == User.encrypt(pass, salt)
+  end
+
+  def password_required?
+    encrypted_password.blank? || !password.blank?
   end
 end
