@@ -1,0 +1,8 @@
+<fieldset>
+  <legend>Search</legend>
+  <%= form_tag 'controller/action', :method => :post do  %>
+    <%= label_tag 'search', "Search" %><br />
+    <%= text_field_tag 'search', '', :size => '20' %><br />
+    <%= submit_tag "Search" %>
+  <% end %>
+</fieldset>
