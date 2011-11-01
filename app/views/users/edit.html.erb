@@ -4,7 +4,7 @@
 <div>
   <fieldset>
     <legend>Update user profile</legend>
-    <%= form_for :user, :url => {:action => "update"} do |form| %>
+    <%= form_for :user, :url => {:action => "update", :id => session[:user]} do |form| %>
       <div>
         <%= form.label :username %><br />
         <%= form.text_field :username, :size => 20 %>
