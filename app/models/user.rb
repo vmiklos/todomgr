@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   validates_length_of :username, :within => 4..20
   validates_confirmation_of :password, :if => :password_required?
 
+  has_many :todos
+
   def self.encrypt(pass, salt)
     Digest::SHA2.hexdigest(salt+pass)
   end
