@@ -8,3 +8,8 @@
 
 User.create(username: 'vmiklos', password: 'foo', email: 'vmiklos@vmiklos.hu')
 User.create(username: 'akarki', password: 'akarmi', email: 'akarki@mail.bme.hu')
+
+u = User.find_by_username 'akarki'
+
+Todo.create(deadline: Time.now, todo: 'Fix bugs', done: false, user: u, public: true)
+Todo.create(deadline: Time.now, todo: 'Read RSS', done: false, user: u, public: true)
