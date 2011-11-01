@@ -8,7 +8,12 @@ class TodosController < ApplicationController
   end
 
   def show
-    @todos = Todo.find :all
+    if session[:user]
+      u = User.find_by_id session[:user]
+      @todos = u.todos
+    else
+      @todos = Todo.find :all
+    end
   end
 
 end
