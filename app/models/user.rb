@@ -35,7 +35,11 @@ class User < ActiveRecord::Base
     encrypted_password.blank? || !password.blank?
   end
 
-  def get_todo_page(page)
-    todos.where("deadline > ?", Time.now).order("deadline ASC").paginate(:page => page, :per_page => 5)
+  def get_todo_page(page, history = false)
+    if !history
+      todos.where("deadline >= ?", Time.now).order("deadline ASC").paginate(:page => page, :per_page => 5)
+    else
+      todos.where("deadline < ?", Time.now).order("deadline DESC").paginate(:page => page, :per_page => 5)
+    end
   end
 end

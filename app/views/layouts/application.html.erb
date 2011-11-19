@@ -10,7 +10,7 @@
 
   <div id="header" align="center">
     <%= link_to "Active todos", url_for(:controller => "todos", :action => "show") %>
-    | <%= link_to "Histrory", url_for(:controller => "todos", :action => "show") %>
+    | <%= link_to "Histrory", url_for(:controller => "todos", :action => "show") + "?history=1" %>
     <% if logged_in? %>
       | <%= link_to "Submit todo item", url_for(:controller => "todos", :action => "new") %><br />
     <% end %>
