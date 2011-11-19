@@ -6,7 +6,7 @@
  *= require_tree . 
 */
 #page {
-  width: 800px;
+  width: 900px;
 }
 
 #header {
@@ -16,13 +16,13 @@
 
 #menu {
   background-color: #A2D39C;
-  height: 600px;
+  height: 700px;
   width: 24%;
   float: right;
 }
 
 #main {
-  height: 600px;
+  height: 700px;
   width: 76%;
   float: left;
 }

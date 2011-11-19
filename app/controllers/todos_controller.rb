@@ -4,6 +4,7 @@ class TodosController < ApplicationController
   def new
     @todo=Todo.new
     @todo.deadline = Time.now
+    @todo.public = true
   end
 
   def edit
@@ -12,7 +13,6 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.new(params[:todo])
     @todo.user = User.find_by_id session[:user]
-    @todo.done = false
     if @todo.save
       flash[:notice] = 'Todo item successfully added'
       redirect_to :controller => "todos", :action => "show"
