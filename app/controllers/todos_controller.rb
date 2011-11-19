@@ -17,4 +17,13 @@ class TodosController < ApplicationController
     end
   end
 
+  def delete
+    todo = Todo.find params[:id]
+    if todo.delete
+      flash[:notice] = 'Delete was susccessfull'
+    else
+      flash[:notice] = 'Could not delete todo'
+    end
+    redirect_to :controller => "todos", :action => "show"
+  end
 end
