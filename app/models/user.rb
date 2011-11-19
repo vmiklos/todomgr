@@ -34,4 +34,8 @@ class User < ActiveRecord::Base
   def password_required?
     encrypted_password.blank? || !password.blank?
   end
+
+  def get_todo_page(page)
+    todos.paginate(:page => page, :per_page => 5)
+  end
 end

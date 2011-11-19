@@ -10,7 +10,7 @@ class TodosController < ApplicationController
   def show
     if session[:user]
       u = User.find_by_id session[:user]
-      @todos = u.todos
+      @todos = u.get_todo_page params[:page]
     else
       @todos = Todo.find :all
     end
