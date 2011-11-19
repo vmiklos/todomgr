@@ -1,4 +1,6 @@
 class TodosController < ApplicationController
+  before_filter :find_todo, :except => [:new, :create]
+
   def new
     @todo=Todo.new
     @todo.deadline = Time.now
@@ -39,4 +41,10 @@ class TodosController < ApplicationController
     end
     redirect_to :controller => "todos", :action => "show"
   end
+
+  private
+  def find_todo
+    @todo = Todo.find(params[:id])
+  end
+
 end

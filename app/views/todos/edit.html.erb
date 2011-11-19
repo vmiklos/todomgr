@@ -1,2 +1,24 @@
-<h1>Todos#edit</h1>
-<p>Find me in app/views/todos/edit.html.erb</p>
+<h3>Edit todo</h3>
+<%= flash[:notice] %>
+
+<div>
+  <fieldset>
+    <legend>Edit todo item</legend>
+    <%= form_for :todo, :url => {:action => "update", :id => params[:id]} do |form| %>
+      <div>
+        <%= form.label :deadline %><br />
+        <%= form.datetime_select :deadline %>
+      </div>
+      <div>
+        <%= form.label :todo %><br />
+        <%= form.text_area :todo %>
+      </div>
+      <div>
+        <%= form.label :public %><br />
+        <%= form.check_box :public %>
+      </div>
+      <%= form.submit "Update" %>
+    <% end %>
+  </fieldset>
+</div>
+<%= link_to "Back", :back %>
