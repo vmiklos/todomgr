@@ -36,6 +36,6 @@ class User < ActiveRecord::Base
   end
 
   def get_todo_page(page)
-    todos.paginate(:page => page, :per_page => 5)
+    todos.order("deadline DESC").paginate(:page => page, :per_page => 5)
   end
 end

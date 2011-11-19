@@ -12,7 +12,7 @@ class TodosController < ApplicationController
       u = User.find_by_id session[:user]
       @todos = u.get_todo_page params[:page]
     else
-      @todos = Todo.find :all
+      @todos = Todo.get_page params[:page]
     end
   end
 
