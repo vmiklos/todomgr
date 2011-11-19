@@ -1,5 +1,5 @@
 class TodosController < ApplicationController
-  before_filter :find_todo, :except => [:new, :create]
+  before_filter :find_todo, :except => [:new, :create, :show]
 
   def new
     @todo=Todo.new
@@ -33,13 +33,22 @@ class TodosController < ApplicationController
   end
 
   def delete
-    todo = Todo.find params[:id]
-    if todo.delete
+    if @todo.delete
       flash[:notice] = 'Delete was susccessfull'
     else
       flash[:notice] = 'Could not delete todo'
     end
     redirect_to :controller => "todos", :action => "show"
+  end
+
+  def update
+    if @todo.update_attributes(params[:todo])
+      flash[:notice] = 'Update was susccessfull'
+      redirect_to :controller => "todos", :action => "show"
+    else
+      flash[:notice] = 'Could not update todo item'
+      render :action => 'edit'
+    end
   end
 
   private
