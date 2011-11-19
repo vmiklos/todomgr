@@ -7,7 +7,7 @@
     <%= form_for :todo, :url => {:action => "create"} do |form| %>
       <div>
         <%= form.label :deadline %><br />
-        <%= select_datetime(@todo.deadline, :prefix => "todo") %>
+        <%= form.datetime_select :deadline %>
       </div>
       <div>
         <%= form.label :todo %><br />
