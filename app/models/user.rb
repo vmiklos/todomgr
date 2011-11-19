@@ -36,11 +36,6 @@ class User < ActiveRecord::Base
   end
 
   def get_todo_page(page, history = false, search = nil)
-    q = todos.where("deadline "+(!history ? ">=" : "<")+" ?", Time.now)
-    if !search.eql? nil
-      q = q.where("todo like ?", "%#{search}%")
-    end
-    q = q.order("deadline " + (!history ? "ASC" : "DESC"))
-    q.paginate(:page => page, :per_page => 5)
+    Todo.get_page(page, history, search, todos)
   end
 end

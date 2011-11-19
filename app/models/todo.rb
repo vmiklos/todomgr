@@ -1,7 +1,10 @@
 class Todo < ActiveRecord::Base
   belongs_to :user
-  def self.get_page(page, history, search)
-    q = Todo.where("public = 1").where("deadline "+(!history ? ">=" : "<")+" ?", Time.now)
+  def self.get_page(page, history, search, todos = nil)
+    if !todos
+      todos = Todo.where("public = 1")
+    end
+    q = todos.where("deadline "+(!history ? ">=" : "<")+" ?", Time.now)
     if !search.eql? nil
       q = q.where("todo like ?", "%#{search}%")
     end
