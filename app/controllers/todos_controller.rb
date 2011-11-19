@@ -25,11 +25,12 @@ class TodosController < ApplicationController
 
   def show
     history = "1".eql?(params[:history])
+    search = params[:search]
     if session[:user]
       u = User.find_by_id session[:user]
-      @todos = u.get_todo_page params[:page], history
+      @todos = u.get_todo_page params[:page], history, search
     else
-      @todos = Todo.get_page params[:page], history
+      @todos = Todo.get_page params[:page], history, search
     end
   end
 

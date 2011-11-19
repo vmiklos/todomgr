@@ -1,10 +1,11 @@
 class Todo < ActiveRecord::Base
   belongs_to :user
-  def self.get_page(page, history)
-    if !history
-      Todo.where("public = 1").where("deadline >= ?", Time.now).order("deadline ASC").paginate( :page => page, :per_page => 5)
-    else
-      Todo.where("public = 1").where("deadline < ?", Time.now).order("deadline DESC").paginate( :page => page, :per_page => 5)
+  def self.get_page(page, history, search)
+    q = Todo.where("public = 1").where("deadline "+(!history ? ">=" : "<")+" ?", Time.now)
+    if !search.eql? nil
+      q = q.where("todo like ?", "%#{search}%")
     end
+    q = q.order("deadline " + (!history ? "ASC" : "DESC"))
+    q.paginate(:page => page, :per_page => 5)
   end
 end
