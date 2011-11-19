@@ -22,7 +22,7 @@ Todo.create(deadline: Time.now-(month*1)-1, todo: 'Fix bugs', done: true, user: 
 Todo.create(deadline: Time.now-(month*1), todo: 'Take out the dog', done: false, user: u, public: true)
 
 
-Todo.create(deadline: Time.now+(month*1), todo: 'Shopping', done: false, user: u, public: true)
+Todo.create(deadline: Time.now+(month*1), todo: 'Private shopping', done: false, user: u, public: false)
 Todo.create(deadline: Time.now+(month*1)+1, todo: 'Write specification', done: true, user: u, public: true)
 Todo.create(deadline: Time.now+(month*1)+2, todo: 'Make some phone call', done: false, user: u, public: true)
 Todo.create(deadline: Time.now+(month*2), todo: 'Arrange hotel reservation', done: false, user: u, public: true)
