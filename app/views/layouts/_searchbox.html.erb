@@ -3,6 +3,9 @@
   <%= form_tag '/todos/show', :method => :get do  %>
     <%= label_tag 'search', "Search" %><br />
     <%= text_field_tag 'search', '', :size => '20' %><br />
+    <% if params[:history] %>
+      <input type="hidden" name="history" value="1" />
+    <% end %>
     <%= submit_tag "Search" %>
   <% end %>
 </fieldset>
