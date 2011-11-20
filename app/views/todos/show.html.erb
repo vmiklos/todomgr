@@ -5,11 +5,14 @@
       <%= content_tag_for(:tr, t) do %>
         <td><%= t.deadline %></td>
         <td><%= t.todo %></td>
-        <% if t.done %>
-          <td><%= link_to "Edit completed", url_for(:controller => "todos", :action => "edit", :id=>t.id) %></td>
-        <% else %>
-          <td><%= link_to "Edit pending", url_for(:controller => "todos", :action => "edit", :id=>t.id) %></td>
-        <% end %>
+        <td>
+          <% if t.done %>
+            <input type="checkbox" disabled="disabled" checked="checked" />
+          <% else %>
+            <input type="checkbox" disabled="disabled" />
+          <% end %>
+        </td>
+        <td><%= link_to "Edit", url_for(:controller => "todos", :action => "edit", :id=>t.id) %></td>
         <td><%= link_to "Delete", url_for(:controller => "todos", :action => "delete", :id=>t.id) %></td>
       <% end %>
     <% end %>
