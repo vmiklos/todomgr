@@ -12,8 +12,10 @@
             <input type="checkbox" disabled="disabled" />
           <% end %>
         </td>
-        <td><%= link_to image_tag("edit.png", :border=>0), url_for(:controller => "todos", :action => "edit", :id=>t.id) %></td>
-        <td><%= link_to image_tag("drop.png", :border=>0), url_for(:controller => "todos", :action => "delete", :id=>t.id) %></td>
+        <% if logged_in? %>
+          <td><%= link_to image_tag("edit.png", :border=>0), url_for(:controller => "todos", :action => "edit", :id=>t.id) %></td>
+          <td><%= link_to image_tag("drop.png", :border=>0), url_for(:controller => "todos", :action => "delete", :id=>t.id) %></td>
+        <% end %>
       <% end %>
     <% end %>
   </table>
