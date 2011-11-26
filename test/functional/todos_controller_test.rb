@@ -31,7 +31,7 @@ class TodosControllerTest < ActionController::TestCase
     end
     assert_redirected_to '/todos/show'
     get :show
-    assert_select "div#flash_notice", "Update without login is not allowed"
+    assert_select "div#flash_notice", "Create without login is not allowed"
   end
 
   test "edit without login" do
@@ -45,8 +45,18 @@ class TodosControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "update" do
+  test "update without login" do
     put :update, id: @todo.to_param, todo: @todo.attributes
+    assert_redirected_to '/todos/show'
+    get :show
+    assert_select "div#flash_notice", "Update without login is not allowed"
+  end
+
+  test "update with login" do
+    put :update, {id: @todo.to_param, todo: @todo.attributes}, {:user=>users(:me).id}
+    assert_redirected_to '/todos/show'
+    get :show
+    assert_select "div#flash_notice", "Update was susccessfull"
   end
 
   test "show" do

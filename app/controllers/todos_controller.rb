@@ -30,7 +30,7 @@ class TodosController < ApplicationController
         render :action => 'new'
       end
     else
-      flash[:notice] = 'Update without login is not allowed'
+      flash[:notice] = 'Create without login is not allowed'
       redirect_to :controller => "todos", :action => "show"
     end
   end
@@ -56,6 +56,7 @@ class TodosController < ApplicationController
   end
 
   def update
+    if session[:user]
       if @todo.update_attributes(params[:todo])
         flash[:notice] = 'Update was susccessfull'
         redirect_to :controller => "todos", :action => "show"
@@ -63,6 +64,10 @@ class TodosController < ApplicationController
         flash[:notice] = 'Could not update todo item'
         render :action => 'edit'
       end
+    else
+      flash[:notice] = 'Update without login is not allowed'
+      redirect_to :controller => "todos", :action => "show"
+    end
   end
 
   private
