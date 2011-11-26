@@ -3,9 +3,24 @@
 # This model initially had no columns defined.  If you add columns to the
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+
+download:
+  deadline: 2011-08-26 12:38
+  todo: Download ruby book
+  done: true
+  user: me
+  public: true
+
+slides:
+  deadline: 2011-08-26 12:39
+  todo: Write slides
+  done: true
+  user: me
+  public: true
+
+shopping:
+  deadline: 2011-12-26 12:42
+  todo: Private shopping
+  done: false
+  user: me
+  public: false
