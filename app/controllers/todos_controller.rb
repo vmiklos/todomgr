@@ -47,10 +47,14 @@ class TodosController < ApplicationController
   end
 
   def delete
-    if @todo.delete
-      flash[:notice] = 'Delete was susccessfull'
+    if session[:user]
+      if @todo.delete
+        flash[:notice] = 'Delete was susccessfull'
+      else
+        flash[:notice] = 'Could not delete todo'
+      end
     else
-      flash[:notice] = 'Could not delete todo'
+      flash[:notice] = 'Delete without login is not allowed'
     end
     redirect_to :controller => "todos", :action => "show"
   end

@@ -64,11 +64,22 @@ class TodosControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "delete" do
-    assert_difference('Todo.count', -1) do
-      delete :delete, id: @todo.id
+  test "delete without login" do
+    assert_difference('Todo.count', 0) do
+      delete :delete, {id: @todo.id}
     end
     assert_redirected_to '/todos/show'
+    get :show
+    assert_select "div#flash_notice", "Delete without login is not allowed"
+  end
+
+  test "delete with login" do
+    assert_difference('Todo.count', -1) do
+      delete :delete, {id: @todo.id}, {:user=>users(:me).id}
+    end
+    assert_redirected_to '/todos/show'
+    get :show
+    assert_select "div#flash_notice", "Delete was susccessfull"
   end
 
 end
