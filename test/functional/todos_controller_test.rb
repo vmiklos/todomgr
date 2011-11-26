@@ -1,19 +1,41 @@
 require 'test_helper'
 
 class TodosControllerTest < ActionController::TestCase
-  test "should get new" do
+  setup do
+    @todo = todos(:download)
+  end
+
+  test "new" do
     get :new
     assert_response :success
   end
 
-  test "should get edit" do
+  test "create" do
+    assert_difference('Todo.count') do
+      post :create, todo: @todo.attributes
+    end
+    assert_redirected_to '/todos/show'
+  end
+
+  test "edit" do
     get :edit, :id => todos(:download).id
     assert_response :success
   end
 
-  test "should get show" do
+  test "update" do
+    put :update, id: @todo.to_param, todo: @todo.attributes
+  end
+
+  test "show" do
     get :show, :id => todos(:download).id
     assert_response :success
+  end
+
+  test "delete" do
+    assert_difference('Todo.count', -1) do
+      delete :delete, id: @todo.id
+    end
+    assert_redirected_to '/todos/show'
   end
 
 end
