@@ -5,8 +5,14 @@ class TodosControllerTest < ActionController::TestCase
     @todo = todos(:download)
   end
 
-  test "new" do
+  test "new without login" do
     get :new
+    assert_response :redirect
+    assert_redirected_to '/todos/show'
+  end
+
+  test "new with login" do
+    get :new, nil, :user=>users(:me).id
     assert_response :success
   end
 

@@ -2,9 +2,13 @@ class TodosController < ApplicationController
   before_filter :find_todo, :except => [:new, :create, :show]
 
   def new
-    @todo=Todo.new
-    @todo.deadline = Time.now
-    @todo.public = true
+    if session[:user]
+      @todo=Todo.new
+      @todo.deadline = Time.now
+      @todo.public = true
+    else
+      redirect_to :controller => "todos", :action => "show"
+    end
   end
 
   def edit
