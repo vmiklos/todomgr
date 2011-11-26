@@ -20,7 +20,7 @@
   </div>
   <div id="menu">
     <%= render 'layouts/searchbox' %>
-    <%= flash[:notice] %><br />
+    <div id="flash_notice"><%= flash[:notice] %></div>
     <% if logged_in? %>
       <%= link_to "Profile", url_for(:controller => "users", :action => "edit", :id=>session[:user]) %><br />
       <%= link_to "Logout", url_for(:controller => "session", :action => "destroy") %><br />
