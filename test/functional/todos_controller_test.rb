@@ -59,9 +59,17 @@ class TodosControllerTest < ActionController::TestCase
     assert_select "div#flash_notice", "Update was susccessfull"
   end
 
-  test "show" do
-    get :show, :id => todos(:download).id
+  test "show with login" do
+    get :show, nil, {:user=>users(:me).id}
     assert_response :success
+    assert_select "tr", :count => 1
+  end
+
+  test "show without login" do
+    get :show
+    assert_response :success
+    # no items, the only future one is private
+    assert_select "tr", :count => 0
   end
 
   test "delete without login" do
