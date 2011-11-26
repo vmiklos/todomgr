@@ -7,12 +7,12 @@ class TodosControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
-    get :edit
+    get :edit, :id => todos(:download).id
     assert_response :success
   end
 
   test "should get show" do
-    get :show
+    get :show, :id => todos(:download).id
     assert_response :success
   end
 
