@@ -18,15 +18,20 @@ class TodosController < ApplicationController
   end
 
   def create
-    @todo = Todo.new(params[:todo])
-    @todo.user = User.find_by_id session[:user]
-    @todo.done = false
-    if @todo.save
-      flash[:notice] = 'Todo item successfully added'
-      redirect_to :controller => "todos", :action => "show"
+    if session[:user]
+      @todo = Todo.new(params[:todo])
+      @todo.user = User.find_by_id session[:user]
+      @todo.done = false
+      if @todo.save
+        flash[:notice] = 'Todo item successfully added'
+        redirect_to :controller => "todos", :action => "show"
+      else
+        flash[:notice] = 'Could not add todo item'
+        render :action => 'new'
+      end
     else
-      flash[:notice] = 'Could not add todo item'
-      render :action => 'new'
+      flash[:notice] = 'Update without login is not allowed'
+      redirect_to :controller => "todos", :action => "show"
     end
   end
 
@@ -51,13 +56,13 @@ class TodosController < ApplicationController
   end
 
   def update
-    if @todo.update_attributes(params[:todo])
-      flash[:notice] = 'Update was susccessfull'
-      redirect_to :controller => "todos", :action => "show"
-    else
-      flash[:notice] = 'Could not update todo item'
-      render :action => 'edit'
-    end
+      if @todo.update_attributes(params[:todo])
+        flash[:notice] = 'Update was susccessfull'
+        redirect_to :controller => "todos", :action => "show"
+      else
+        flash[:notice] = 'Could not update todo item'
+        render :action => 'edit'
+      end
   end
 
   private

@@ -16,11 +16,22 @@ class TodosControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "create" do
+  test "create with login" do
     assert_difference('Todo.count') do
-      post :create, todo: @todo.attributes
+      post :create, {todo: @todo.attributes}, {:user=>users(:me).id}
     end
     assert_redirected_to '/todos/show'
+    get :show
+    assert_select "div#flash_notice", "Todo item successfully added"
+  end
+
+  test "create without login" do
+    assert_difference('Todo.count',0) do
+      post :create, {todo: @todo.attributes}
+    end
+    assert_redirected_to '/todos/show'
+    get :show
+    assert_select "div#flash_notice", "Update without login is not allowed"
   end
 
   test "edit without login" do
