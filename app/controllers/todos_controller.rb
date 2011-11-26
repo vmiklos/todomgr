@@ -12,6 +12,9 @@ class TodosController < ApplicationController
   end
 
   def edit
+    if !session[:user]
+      redirect_to :controller => "todos", :action => "show"
+    end
   end
 
   def create

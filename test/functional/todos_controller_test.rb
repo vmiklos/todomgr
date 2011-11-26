@@ -23,8 +23,14 @@ class TodosControllerTest < ActionController::TestCase
     assert_redirected_to '/todos/show'
   end
 
-  test "edit" do
+  test "edit without login" do
     get :edit, :id => todos(:download).id
+    assert_response :redirect
+    assert_redirected_to '/todos/show'
+  end
+
+  test "edit with login" do
+    get :edit, {:id => todos(:download).id}, {:user=>users(:me).id}
     assert_response :success
   end
 
