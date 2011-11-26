@@ -1,4 +1,5 @@
 class Todo < ActiveRecord::Base
+  validates_presence_of :todo
   belongs_to :user
   def self.get_page(page, history, search, todos = nil)
     if !todos
