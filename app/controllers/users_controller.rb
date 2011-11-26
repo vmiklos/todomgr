@@ -6,15 +6,20 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
-    if @user.save
-      @current_user = @user
-      session[:user] = @current_user.id
-      flash[:notice] = 'Successfull registration'
+    if session[:user]
+      flash[:notice] = 'Already registered'
       redirect_to :controller => "todos", :action => "show"
     else
-      flash[:notice] = 'User name is already in use'
-      render :action => 'new'
+      @user = User.new(params[:user])
+      if @user.save
+        @current_user = @user
+        session[:user] = @current_user.id
+        flash[:notice] = 'Successfull registration'
+        redirect_to :controller => "todos", :action => "show"
+      else
+        flash[:notice] = 'User name is already in use'
+        render :action => 'new'
+      end
     end
   end
 
